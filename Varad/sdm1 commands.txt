@@ -1,0 +1,228 @@
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sdm                |
+| sys                |
+| test               |
+| test1              |
+| varad              |
+| world              |
++--------------------+
+10 rows in set (0.04 sec)
+
+mysql> create database sdm1;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use sdm1;
+Database changed
+mysql> create table course(
+    -> course_id int primary key,
+    -> course_name varchar(20) not null
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table subject(
+    -> sub_id int primary key,
+    -> sub_name varchar(20) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table stud_subject(
+    -> sub_id int,
+    -> stud_id int,
+    -> primary key(sub_id,stud_id),
+    -> Physics varchar(20),
+    -> Chemistry varchar(20),
+    -> Math varchar(20)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table progress_report(
+    -> rep_id int primary key,
+    -> grade varchar(5) not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table  Staff(
+    -> User_ID varchar(10) unique not null,
+    -> staff_id int primary key,
+    -> First_Name varchar(25) not null,
+    -> Middle_Name varchar(25),
+    -> Last_Name varchar(25) not null,
+    -> Email varchar(40) unique,
+    -> Address varchar(100),
+    -> State varchar(20) not null,
+    -> Country varchar(20) not null,
+    -> Mobile_No varchar(10) unique not null
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table Admin(
+    -> User_ID varchar(10) unique not null,
+    -> Admin_id int primary key,
+    -> First_Name varchar(25) not null,
+    -> Middle_Name varchar(25),
+    -> Last_Name varchar(25) not null,
+    -> Email varchar(40) unique,
+    -> Address varchar(100),
+    -> State varchar(20) not null,
+    -> Country varchar(20) not null,
+    -> Mobile_No varchar(10) unique not null
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table Student(
+    -> User_ID varchar(10) unique not null,
+    -> stud_id int primary key,
+    -> First_Name varchar(25) not null,
+    -> Middle_Name varchar(25),
+    -> Last_Name varchar(25) not null,
+    -> Email varchar(40) unique,
+    -> Address varchar(100),
+    -> State varchar(20) not null,
+    -> Country varchar(20) not null,
+    -> Mobile_No varchar(10) unique not null,
+    -> Date_Of_Birth date not null,
+    -> course_id int unique not null,
+    -> staff_id int unique not null,
+    -> sub_id int unique not null,
+    -> rep_id int unique not null
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table login(
+    -> User_ID varchar(10) primary key,
+    -> Password varchar(10) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sdm1  |
++-----------------+
+| admin           |
+| course          |
+| login           |
+| progress_report |
+| staff           |
+| stud_subject    |
+| student         |
+| subject         |
++-----------------+
+8 rows in set (0.02 sec)
+
+mysql> desc admin;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| User_ID     | varchar(10)  | NO   | UNI | NULL    |       |
+| Admin_id    | int          | NO   | PRI | NULL    |       |
+| First_Name  | varchar(25)  | NO   |     | NULL    |       |
+| Middle_Name | varchar(25)  | YES  |     | NULL    |       |
+| Last_Name   | varchar(25)  | NO   |     | NULL    |       |
+| Email       | varchar(40)  | YES  | UNI | NULL    |       |
+| Address     | varchar(100) | YES  |     | NULL    |       |
+| State       | varchar(20)  | NO   |     | NULL    |       |
+| Country     | varchar(20)  | NO   |     | NULL    |       |
+| Mobile_No   | varchar(10)  | NO   | UNI | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+10 rows in set (0.02 sec)
+
+mysql> desc student
+    -> ;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| User_ID       | varchar(10)  | NO   | UNI | NULL    |       |
+| stud_id       | int          | NO   | PRI | NULL    |       |
+| First_Name    | varchar(25)  | NO   |     | NULL    |       |
+| Middle_Name   | varchar(25)  | YES  |     | NULL    |       |
+| Last_Name     | varchar(25)  | NO   |     | NULL    |       |
+| Email         | varchar(40)  | YES  | UNI | NULL    |       |
+| Address       | varchar(100) | YES  |     | NULL    |       |
+| State         | varchar(20)  | NO   |     | NULL    |       |
+| Country       | varchar(20)  | NO   |     | NULL    |       |
+| Mobile_No     | varchar(10)  | NO   | UNI | NULL    |       |
+| Date_Of_Birth | date         | NO   |     | NULL    |       |
+| course_id     | int          | NO   | UNI | NULL    |       |
+| staff_id      | int          | NO   | UNI | NULL    |       |
+| sub_id        | int          | NO   | UNI | NULL    |       |
+| rep_id        | int          | NO   | UNI | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> desc login
+    -> ;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| User_ID  | varchar(10) | NO   | PRI | NULL    |       |
+| Password | varchar(10) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc staff;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| User_ID     | varchar(10)  | NO   | UNI | NULL    |       |
+| staff_id    | int          | NO   | PRI | NULL    |       |
+| First_Name  | varchar(25)  | NO   |     | NULL    |       |
+| Middle_Name | varchar(25)  | YES  |     | NULL    |       |
+| Last_Name   | varchar(25)  | NO   |     | NULL    |       |
+| Email       | varchar(40)  | YES  | UNI | NULL    |       |
+| Address     | varchar(100) | YES  |     | NULL    |       |
+| State       | varchar(20)  | NO   |     | NULL    |       |
+| Country     | varchar(20)  | NO   |     | NULL    |       |
+| Mobile_No   | varchar(10)  | NO   | UNI | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> desc stud_sub;
+ERROR 1146 (42S02): Table 'sdm1.stud_sub' doesn't exist
+mysql> desc sub_desc;
+ERROR 1146 (42S02): Table 'sdm1.sub_desc' doesn't exist
+mysql> show tables;
++-----------------+
+| Tables_in_sdm1  |
++-----------------+
+| admin           |
+| course          |
+| login           |
+| progress_report |
+| staff           |
+| stud_subject    |
+| student         |
+| subject         |
++-----------------+
+8 rows in set (0.00 sec)
+
+mysql> desc stud_subject;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sub_id    | int         | NO   | PRI | NULL    |       |
+| stud_id   | int         | NO   | PRI | NULL    |       |
+| Physics   | varchar(20) | YES  |     | NULL    |       |
+| Chemistry | varchar(20) | YES  |     | NULL    |       |
+| Math      | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc subject;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sub_id   | int         | NO   | PRI | NULL    |       |
+| sub_name | varchar(20) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql>

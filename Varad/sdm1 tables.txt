@@ -1,0 +1,74 @@
+create table login(
+User_ID varchar(10) primary key,
+Password varchar(10) not null
+);
+
+create table Student(
+User_ID varchar(10) unique not null,
+stud_id int primary key,
+First_Name varchar(25) not null,
+Middle_Name varchar(25),
+Last_Name varchar(25) not null,
+Email varchar(40) unique,
+Address varchar(100),
+State varchar(20) not null,
+Country varchar(20) not null,
+Mobile_No varchar(10) unique not null,
+Date_Of_Birth date not null,
+course_id int unique not null,
+staff_id int unique not null,
+sub_id int unique not null,
+rep_id int unique not null
+);
+
+
+create table course(
+course_id int primary key,
+course_name varchar(20) not null
+);
+
+create table subject(
+sub_id int primary key,
+sub_name varchar(20) not null
+);
+
+create table stud_subject(
+sub_id int,
+stud_id int,
+primary key(sub_id,stud_id),
+Physics varchar(20),
+Chemistry varchar(20),
+Math varchar(20)
+);
+ 
+
+create table Admin(
+User_ID varchar(10) unique not null,
+Admin_id int primary key,
+First_Name varchar(25) not null,
+Middle_Name varchar(25),
+Last_Name varchar(25) not null,
+Email varchar(40) unique,
+Address varchar(100),
+State varchar(20) not null,
+Country varchar(20) not null,
+Mobile_No varchar(10) unique not null
+);
+
+create table  Staff(
+User_ID varchar(10) unique not null,
+staff_id int primary key,
+First_Name varchar(25) not null,
+Middle_Name varchar(25),
+Last_Name varchar(25) not null,
+Email varchar(40) unique,
+Address varchar(100),
+State varchar(20) not null,
+Country varchar(20) not null,
+Mobile_No varchar(10) unique not null
+);
+
+create table progress_report(
+rep_id int primary key,
+grade varchar(5) not null
+);
